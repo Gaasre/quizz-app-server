@@ -63,7 +63,6 @@ app.use('/quiz/api/connected', function (req, res) {
 app.use('/quiz/api', api)
 // Serve only the static files form the dist directory
 app.use("/quiz/", express.static('public'));
-app.use("/assets", express.static('public/assets'));
 
 app.get("/quiz/*", function (req, res) {
   res.sendFile(path.join(__dirname, "/public/index.html"));
@@ -74,8 +73,8 @@ let Rooms = [];
 
 const Room = require('./models/room.model');
 
-const server = app.listen(1234, function () {
-    console.log('server running on port 1234');
+const server = app.listen(8083, function () {
+    console.log('server running on port 8083');
     Room.find({}, function (err, rooms) {
         console.log('Loading rooms ...');
         rooms.forEach(function (room) {
@@ -102,7 +101,7 @@ const server = app.listen(1234, function () {
     });
 });
 
-const io = require('socket.io')(server);
+const io = require('socket.io')(server, {path : '/quiz/tunnel'});
 
 let counter = 0;
 let roundCounter = 0;
