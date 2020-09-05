@@ -1,0 +1,25 @@
+[{
+  "_id": {
+    "$oid": "5d37ab2a0c514e23fc4d9d40"
+  },
+  "email": "test@test.com",
+  "username": "test",
+  "password": "test",
+  "avatar": "5d37ab2a0c514e23fc4d9d40.png",
+  "seen": true,
+  "level": 4,
+  "nextLevelXP": 500,
+  "xp": 160
+},{
+  "_id": {
+    "$oid": "5d3a1f1a89b3ea3f445f1a16"
+  },
+  "email": "gaasre@test.com",
+  "username": "Gaasre",
+  "password": "test",
+  "avatar": "5d3a1f1a89b3ea3f445f1a16.jpg",
+  "seen": true,
+  "level": 1,
+  "nextLevelXP": 100,
+  "xp": 50
+}]

@@ -4,7 +4,7 @@ const api = require('./routes');
 const app = express();
 const cors = require('cors');
 var uniqid = require('uniqid');
-const fs = require('fs');
+const path = require('path');
 const protectedRoutes = express.Router();
 const userController = require('./controllers/user.controller');
 var bodyParser = require('body-parser');
@@ -43,15 +43,15 @@ app.use(express.urlencoded({
 protectedRoutes.use(require('express-fileupload')());
 
 protectedRoutes.use(require('./middlewares/token.middleware'))
-protectedRoutes.get('/user', userController.getUser);
-protectedRoutes.get('/user/seen', userController.seen);
-protectedRoutes.post('/user/avatar', function (req, res) {
+protectedRoutes.get('/quiz/user', userController.getUser);
+protectedRoutes.get('/quiz/user/seen', userController.seen);
+protectedRoutes.post('/quiz/user/avatar', function (req, res) {
     userController.updateAvatar(req, res)
 });
 
 app.use(cors());
-app.use('/protected', protectedRoutes);
-app.use('/api/connected', function (req, res) {
+app.use('/quiz/protected', protectedRoutes);
+app.use('/quiz/api/connected', function (req, res) {
     var connected = 0;
     Rooms.forEach(room => {
         connected += room.players.length;
@@ -60,7 +60,14 @@ app.use('/api/connected', function (req, res) {
         connected: connected
     });
 })
-app.use('/api', api)
+app.use('/quiz/api', api)
+// Serve only the static files form the dist directory
+app.use("/quiz/", express.static('public'));
+app.use("/assets", express.static('public/assets'));
+
+app.get("/quiz/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/index.html"));
+});
 
 
 let Rooms = [];
