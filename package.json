@@ -19,7 +19,7 @@
     "leven": "^3.1.0",
     "loadash": "^1.0.0",
     "lodash": "^4.17.15",
-    "mongoose": "^5.6.6",
+    "mongoose": "^5.7.5",
     "socket.io": "^2.2.0",
     "string-similarity": "^3.0.0",
     "uniqid": "^5.0.3"
