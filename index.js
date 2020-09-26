@@ -43,9 +43,9 @@ app.use(express.urlencoded({
 protectedRoutes.use(require('express-fileupload')());
 
 protectedRoutes.use(require('./middlewares/token.middleware'))
-protectedRoutes.get('/quiz/user', userController.getUser);
-protectedRoutes.get('/quiz/user/seen', userController.seen);
-protectedRoutes.post('/quiz/user/avatar', function (req, res) {
+protectedRoutes.get('/user', userController.getUser);
+protectedRoutes.get('/user/seen', userController.seen);
+protectedRoutes.post('/user/avatar', function (req, res) {
     userController.updateAvatar(req, res)
 });
 
